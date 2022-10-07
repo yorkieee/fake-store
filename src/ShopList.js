@@ -1,19 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
 
 import { ItemCard } from "./ItemCard";
-import { useFetchData } from "./hooks/useFetchData";
 import { Container } from "@mui/system";
 
-export const ShopList = () => {
-  const [list, setList] = useState([]);
-  useFetchData(setList);
-
+export const ShopList = ({ itemsData }) => {
   return (
     <div>
       <Container>
         <Grid container spacing={4}>
-          {list.map((item, id) => (
+          {itemsData.map((item, id) => (
             <Grid item key={id} xs={12} md={3} lg={4}>
               <ItemCard item={item} />
             </Grid>
