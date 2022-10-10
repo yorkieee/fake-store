@@ -6,6 +6,7 @@ import { useFetchData } from './hooks/useFetchData';
 import { Home } from './pages/Home';
 import { ErrorPage } from './pages/ErrorPage';
 import { ProductPage } from './pages/ProductPage';
+import { Login } from './pages/Login';
 
 const App = () => {
   const [itemsData, setItemsData] = useState([]);
@@ -15,9 +16,11 @@ const App = () => {
     <Router>
       <nav>
         <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home itemsData={itemsData} />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/ProductDisplay">
           <Route path=":id" element={<ProductPage itemsData={itemsData} />} />
         </Route>
