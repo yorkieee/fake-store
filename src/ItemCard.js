@@ -26,7 +26,6 @@ export const ItemCard = ({ item }) => {
         />
         <CardMedia
           sx={{ backgroundPosition: "top" }}
-          s
           component="img"
           height="274"
           src={item.image}
@@ -42,7 +41,7 @@ export const ItemCard = ({ item }) => {
           <Button
             size="small"
             onClick={() => {
-              navigate(`/ProductDisplay?id=${item.id}`);
+              navigate(`/ProductDisplay/:id=${item.id}`);
             }}
           >
             Product Details

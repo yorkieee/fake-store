@@ -12,14 +12,16 @@ function App() {
   return (
     <Router>
       <nav>
-        <Link to="./ShopList"> Home </Link>
+        <Link to="/ShopList"> Home </Link>
       </nav>
       <Routes>
         <Route path="/ShopList" element={<ShopList itemsData={itemsData} />} />
-        <Route
-          path="/ProductDisplay"
-          element={<ProductDisplay itemsData={itemsData} />}
-        />
+        <Route path="/ProductDisplay">
+          <Route
+            path=":id"
+            element={<ProductDisplay itemsData={itemsData} />}
+          />
+        </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
