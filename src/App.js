@@ -7,7 +7,7 @@ import { Home } from './pages/Home';
 import { ErrorPage } from './pages/ErrorPage';
 import { ProductPage } from './pages/ProductPage';
 
-function App() {
+const App = () => {
   const [itemsData, setItemsData] = useState([]);
   useFetchData(setItemsData);
 
@@ -25,6 +25,6 @@ function App() {
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
