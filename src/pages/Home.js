@@ -1,10 +1,10 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 
-import { ItemCard } from "./ItemCard";
+import { ItemCard } from "../ItemCard";
 import { Container } from "@mui/system";
 
-export const ShopList = ({ itemsData }) => {
+export const Home = ({ itemsData }) => {
   return (
     <div>
       <Container>

@@ -1,5 +1,5 @@
 import React from "react";
 
-export function ErrorPage() {
+export const ErrorPage =() => {
   return <div>This is error page</div>;
 }

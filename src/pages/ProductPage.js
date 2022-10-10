@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-export const ProductDisplay = ({ itemsData }) => {
+export const ProductPage = ({ itemsData }) => {
   const { id } = useParams();
   const parsedId = parseInt(id.split("=")[1], 10);
   const itemToRender = itemsData.find((item) => {

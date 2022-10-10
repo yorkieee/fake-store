@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { ShopList } from "./ShopList";
-import { ProductDisplay } from "./ProductDisplay";
-import { ErrorPage } from "./ErrorPage";
-import { useFetchData } from "./hooks/useFetchData";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+import { useFetchData } from './hooks/useFetchData';
+
+import { Home } from './pages/Home';
+import { ErrorPage } from './pages/ErrorPage';
+import { ProductPage } from './pages/ProductPage';
 
 function App() {
   const [itemsData, setItemsData] = useState([]);
@@ -12,15 +14,12 @@ function App() {
   return (
     <Router>
       <nav>
-        <Link to="/ShopList"> Home </Link>
+        <Link to="/">Home</Link>
       </nav>
       <Routes>
-        <Route path="/ShopList" element={<ShopList itemsData={itemsData} />} />
+        <Route path="/" element={<Home itemsData={itemsData} />} />
         <Route path="/ProductDisplay">
-          <Route
-            path=":id"
-            element={<ProductDisplay itemsData={itemsData} />}
-          />
+          <Route path=":id" element={<ProductPage itemsData={itemsData} />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
