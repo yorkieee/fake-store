@@ -16,7 +16,7 @@ const {
   REACT_APP_STORAGE_BUCKET,
   REACT_APP_MESSAGING_SENDER_ID,
   REACT_APP_MEASUREMENT_ID,
-} = process.env;
+} = process.env; // eslint-disable-line no-undef
 
 const firebaseConfig = {
   apiKey: REACT_APP_API_KEY,
