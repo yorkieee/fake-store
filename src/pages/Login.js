@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
-import { LoginContext } from '../App';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../AuthContext';
+// import { LoginContext } from '../App';
 
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -23,11 +19,19 @@ const theme = createTheme({
     },
   },
 });
-export const Login = () => {
-  const [loginState, setLoginState] = useContext(LoginContext);
 
-  const onLoginClick = (e) => {
-    e.preventDefault();
+export const Login = () => {
+  const { LogInUser } = useContext(AuthContext);
+  const [loginState, setLoginState] = useState({ email: '', password: '' });
+
+  const handleChange = (e) => {
+    setLoginState({ ...loginState, [e.target.name]: e.target.value });
+  };
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    LogInUser(loginState.email, loginState.password);
+
     setLoginState(!loginState);
   };
 
@@ -47,55 +51,31 @@ export const Login = () => {
             <Typography component="h1" variant="h5">
               Log in
             </Typography>
-            <Box component="form" noValidate sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
+            <form onSubmit={handleOnSubmit}>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                onChange={handleChange}
+                placeholder="Email"
                 name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
                 required
-                fullWidth
-                name="password"
-                label="Password"
+                value={loginState.email}
+              />
+
+              <label htmlFor="password">Password</label>
+              <input
                 type="password"
-                id="password"
-                autoComplete="current-password"
+                onChange={handleChange}
+                placeholder="Enter Password"
+                name="password"
+                required
+                value={loginState.password}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                onClick={onLoginClick}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="secondary"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                {' '}
-                Log In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-            </Box>
+
+              <button type="submit">Log In</button>
+
+              <Grid container></Grid>
+            </form>
           </Box>
         </Container>
       </ThemeProvider>

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Navigation } from './components/Navigation';
+import { AppBar, Toolbar, CssBaseline } from '@mui/material';
 
 const Copyright = () => {
   return (
@@ -33,6 +34,17 @@ export default function Layout({ children }) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <AppBar
+        rowspacing={2}
+        position="static"
+        sx={{
+          backgroundColor: 'orange',
+        }}
+      >
+        <Toolbar>
+          <Navigation />
+        </Toolbar>
+      </AppBar>
 
       <div>{children}</div>
 
