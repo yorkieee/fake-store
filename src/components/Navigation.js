@@ -5,9 +5,6 @@ import { AuthContext } from '../AuthContext';
 export const Navigation = () => {
   const { logout, user } = useContext(AuthContext);
 
-  console.log(typeof user);
-  console.log(user?.uid);
-
   const handleLogout = () => {
     logout();
   };
