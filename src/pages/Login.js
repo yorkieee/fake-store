@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Button, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
@@ -28,11 +30,14 @@ export const Login = () => {
     setLoginState({ ...loginState, [e.target.name]: e.target.value });
   };
 
+  const navigate = useNavigate();
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
     LogInUser(loginState.email, loginState.password);
 
     setLoginState(!loginState);
+    navigate(`/profile`);
   };
 
   return (
@@ -49,37 +54,56 @@ export const Login = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              Log in
+              {'Log in'}
             </Typography>
             <form onSubmit={handleOnSubmit}>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                onChange={handleChange}
-                placeholder="Email"
-                name="email"
-                required
-                value={loginState.email}
-              />
+              <div
+                style={{ display: 'flex', flexDirection: 'column', width: 300 }}
+                className="container"
+              >
+                <label htmlFor="email">{'Email'}</label>
+                <TextField
+                  type="email"
+                  onChange={handleChange}
+                  placeholder="Email"
+                  name="email"
+                  required
+                  value={loginState.email}
+                />
 
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                onChange={handleChange}
-                placeholder="Enter Password"
-                name="password"
-                required
-                value={loginState.password}
-              />
+                <label htmlFor="password">{'Password'}</label>
+                <TextField
+                  type="password"
+                  onChange={handleChange}
+                  placeholder="Enter Password"
+                  name="password"
+                  required
+                  value={loginState.password}
+                />
 
-              <button type="submit">Log In</button>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  {'Log In'}
+                </Button>
 
-              <Grid container></Grid>
+                <Grid container>
+                  <Button
+                    onClick={() => {
+                      navigate(`/signup`);
+                    }}
+                  >
+                    {'No account yet? Sign Up'}
+                  </Button>
+                </Grid>
+              </div>
             </form>
           </Box>
         </Container>
       </ThemeProvider>
-      <h2>{`Logged in: ${loginState}`}</h2>
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Profile = () => {
 
   return (
     <div>
-      <p>Manage your profile</p>
+      <p>{`Manage your profile ${user.email}`}</p>
     </div>
   );
 };

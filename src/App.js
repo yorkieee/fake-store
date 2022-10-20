@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import SignUp from './pages/SignUp';
-import Layout from './Layout';
+import { Layout } from './Layout';
 import { Home } from './pages/Home';
 import { ErrorPage } from './pages/ErrorPage';
 import { ProductPage } from './pages/ProductPage';

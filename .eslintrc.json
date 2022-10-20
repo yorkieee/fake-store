@@ -14,9 +14,10 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
     ],
     "rules": {
-        "react/prop-types": 0
+        "react/prop-types": 0,
+        "react/no-unknown-property": ["error", { "ignore": ["css"] }],
     }
 }

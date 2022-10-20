@@ -1,6 +1,17 @@
-import React, { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../Firebase';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../AuthContext';
+import {
+  Button,
+  ThemeProvider,
+  Container,
+  Grid,
+  createTheme,
+  Typography,
+  Box,
+  TextField,
+} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useIsUserLoggedIn } from '../components/Navigation';
 
 const SignUp = () => {
   const [state, setState] = useState({
@@ -9,81 +20,120 @@ const SignUp = () => {
     email: '',
     password: '',
   });
-
+  const isUserLoggedIn = useIsUserLoggedIn();
+  const { SignUpUser } = useContext(AuthContext);
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      navigate(`/profile`);
+    }
+  }, [isUserLoggedIn]);
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-
-    // const firstName = event.target[0];
-    // const lastName = event.target[1];
-    const email = event.target[2];
-    const password = event.target[3];
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        // Signed in
-        // const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(error);
-        console.log(errorCode);
-        console.log(errorMessage);
-
-        // ..
-      });
+    SignUpUser(state.email, state.password);
+    setLoginState(loginState);
+    navigate(`/profile`);
   };
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#ffc107',
+      },
+      secondary: {
+        main: '#ff9100',
+      },
+    },
+  });
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <div
-        style={{ display: 'flex', flexDirection: 'column', width: 300 }}
-        className="container"
-      >
-        <label htmlFor="firstName">First name</label>
-        <input
-          type="text"
-          onChange={handleChange}
-          placeholder="First name"
-          name="firstName"
-          required
-        />
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Sign Up
+          </Typography>
+          <form onSubmit={handleOnSubmit}>
+            <div
+              style={{ display: 'flex', flexDirection: 'column', width: 300 }}
+              className="container"
+            >
+              <label htmlFor="displayName">First name</label>
+              <TextField
+                type="text"
+                fullWidth
+                onChange={handleChange}
+                placeholder="First name"
+                name="firstName"
+                required
+                value={state.firstName}
+              />
 
-        <label htmlFor="lastName">Last name</label>
-        <input
-          type="text"
-          onChange={handleChange}
-          placeholder="First name"
-          name="lastName"
-          required
-        />
+              <label htmlFor="lastName">Last name</label>
+              <TextField
+                type="text"
+                onChange={handleChange}
+                placeholder="Last name"
+                name="lastName"
+                required
+                value={state.lastName}
+              />
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          onChange={handleChange}
-          placeholder="Email"
-          name="email"
-          required
-        />
+              <label htmlFor="email">Email</label>
+              <TextField
+                type="email"
+                onChange={handleChange}
+                placeholder="Email"
+                name="email"
+                required
+                value={state.email}
+              />
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          onChange={handleChange}
-          placeholder="Enter Password"
-          name="password"
-          required
-        />
+              <label htmlFor="password">Password</label>
+              <TextField
+                type="password"
+                onChange={handleChange}
+                placeholder="Enter Password"
+                name="password"
+                required
+                value={state.password}
+              />
 
-        <button type="submit">Register</button>
-      </div>
-    </form>
+              <Button
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                type="submit"
+              >
+                Register
+              </Button>
+
+              <Grid item>
+                <Button
+                  onClick={() => {
+                    navigate(`/login`);
+                  }}
+                >
+                  {' '}
+                  Already have an account? Log in
+                </Button>
+              </Grid>
+            </div>
+          </form>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 };
 export default SignUp;
