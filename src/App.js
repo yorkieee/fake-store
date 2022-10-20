@@ -11,6 +11,7 @@ import { Login } from './pages/Login';
 import { useFetchData } from './hooks/useFetchData';
 import { AuthContextProvider } from './AuthContext.js';
 import { Wishlist } from './pages/Wishlist';
+import Profile from './pages/Profile';
 
 export const LoginContext = React.createContext([false, () => {}]);
 
@@ -36,6 +37,7 @@ const App = () => {
                 element={<ProductPage itemsData={itemsData} />}
               />
             </Route>
+            <Route path="/profile" element={<Profile />}></Route>
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </Layout>

@@ -11,10 +11,12 @@ export const Navigation = () => {
 
   return (
     <nav>
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
+      <Link to="/">Home </Link>
+      <Link to="/wishlist">Wishlist </Link>
+      <Link to="/login">Login </Link>
       <Link to="/signup">SignUp</Link>
-      <Link to="/wishlist">Wishlist</Link>
+
+      <Link to="/profile">User Profile</Link>
       <button onClick={handleLogout}>{user?.uid ? 'logout' : 'login'}</button>
     </nav>
   );

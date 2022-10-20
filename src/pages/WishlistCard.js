@@ -6,10 +6,8 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
 
-export const ItemCard = ({ item }) => {
-  const navigate = useNavigate();
+export const WishlistCard = ({ item }) => {
   return (
     <Card sx={{ maxWidth: 384, border: '1px solid orange ' }}>
       <CardHeader
@@ -37,15 +35,6 @@ export const ItemCard = ({ item }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button
-          size="medium"
-          color="secondary"
-          onClick={() => {
-            navigate(`/ProductDisplay/:id=${item.id}`);
-          }}
-        >
-          Product Details
-        </Button>
         <Button size="medium" color="secondary">
           Buy 🛒{' '}
         </Button>
