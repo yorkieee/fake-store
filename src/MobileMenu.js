@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container } from '@mui/material';
 import { Navigation } from './components/Navigation';
-import { themeObject } from './Layout';
 
 export const MobileMenu = () => (
   <Container sx={{ display: { sm: 'none' } }}>

@@ -12,7 +12,7 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -20,7 +20,6 @@ export const AuthContextProvider = (props) => {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         setUser(user);
-        setIsLoggedIn(true);
       } else {
         // User is signed out
         // ...
@@ -34,7 +33,6 @@ export const AuthContextProvider = (props) => {
         // Signed in
         const user = userCredential.user;
         setUser(user);
-        setIsLoggedIn(true);
 
         // ...
       }
@@ -51,7 +49,6 @@ export const AuthContextProvider = (props) => {
       // Signed in
       const user = userCredential.user;
       setUser(user);
-      setIsLoggedIn(true);
 
       // ...
     });
@@ -63,7 +60,6 @@ export const AuthContextProvider = (props) => {
 
   const logout = () => {
     setUser(null);
-    setIsLoggedIn(false);
 
     signOut(auth).then(() => {
       // Sign-out successful.
