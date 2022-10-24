@@ -11,8 +11,7 @@ import {
   TextField,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { useIsUserLoggedIn } from '../components/Navigation';
-
+import useIsUserLoggedIn from '../hooks/useUserIsLoggedIn';
 const SignUp = () => {
   const [state, setState] = useState({
     firstName: '',
