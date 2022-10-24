@@ -2,7 +2,6 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
-import isUserLoggedIn from '../hooks/useUserIsLoggedIn';
 
 const LogoutButton = ({ onClick, renderInColumn }) => {
   return (
@@ -20,13 +19,22 @@ const LoginButton = ({ renderInColumn }) => {
   );
 };
 
+export const useIsUserLoggedIn = () => {
+  const { user } = useContext(AuthContext);
+  const isUserLoggedIn = !!user?.uid;
+
+  return isUserLoggedIn;
+};
+
 export const Navigation = ({ renderInColumn = false }) => {
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
+  const isUserLoggedIn = useIsUserLoggedIn();
 
   return (
     <nav style={styles.container(renderInColumn)}>

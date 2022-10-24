@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
 import {
   Button,
@@ -11,7 +11,8 @@ import {
   TextField,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import useIsUserLoggedIn from '../hooks/useUserIsLoggedIn';
+import { useIsUserLoggedIn } from '../components/Navigation';
+
 const SignUp = () => {
   const [state, setState] = useState({
     firstName: '',
@@ -19,13 +20,15 @@ const SignUp = () => {
     email: '',
     password: '',
   });
-  const isUserLoggedIn = useIsUserLoggedIn();
+
   const { SignUpUser } = useContext(AuthContext);
+
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
   const navigate = useNavigate();
 
+  const isUserLoggedIn = useIsUserLoggedIn();
   useEffect(() => {
     if (isUserLoggedIn) {
       navigate(`/profile`);
@@ -35,7 +38,7 @@ const SignUp = () => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
     SignUpUser(state.email, state.password);
-    setLoginState(loginState);
+    // setLoginState(loginState);
     navigate(`/profile`);
   };
   const theme = createTheme({

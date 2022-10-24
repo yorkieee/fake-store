@@ -1,11 +1,12 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../AuthContext';
 
-const  useIsUserLoggedIn = () => {
+
+export const useIsUserLoggedIn = () => {
   const { user } = useContext(AuthContext);
   const isUserLoggedIn = !!user?.uid;
 
+ 
   return isUserLoggedIn;
 };
 
-export default useIsUserLoggedIn
