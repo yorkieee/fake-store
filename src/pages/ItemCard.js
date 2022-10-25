@@ -11,9 +11,9 @@ import { useNavigate } from 'react-router-dom';
 export const ItemCard = ({ item }) => {
   const navigate = useNavigate();
   return (
-    <Card sx={{ maxWidth: 384, border: '1px solid orange ' }}>
+    <Card sx={{ Width: 416, border: '1px solid orange ' }}>
       <CardHeader
-        sx={{ Height: 260 }}
+        sx={{ Height: 250 }}
         title={item.title}
         subheader={item.category}
         titleTypographyProps={{
@@ -24,9 +24,10 @@ export const ItemCard = ({ item }) => {
         }}
       />
       <CardMedia
+        className="image"
         sx={{ backgroundPosition: 'top' }}
         component="img"
-        height="374"
+        height="420"
         src={item.image}
         alt=""
       />
